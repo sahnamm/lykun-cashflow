@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
-import 'package:lykun_cashflow/common/style.dart';
+import 'package:lykun_cashflow/model/UserModel.dart';
+import 'package:lykun_cashflow/service/ServiceManager.dart';
 import 'package:lykun_cashflow/widget/custom_label.dart';
 import 'package:lykun_cashflow/widget/custom_unit.dart';
 
@@ -130,7 +131,7 @@ class _PengambilanScreenState extends State<PengambilanScreen> {
                   backgroundColor: Colors.green,
                   fixedSize: Size(double.maxFinite, 50),
                 ),
-                onPressed: () {
+                onPressed: () async {
                   FocusScope.of(context).requestFocus(new FocusNode());
                   print("submit");
                   // if (this._formKey.currentState.validate()) {
@@ -146,6 +147,9 @@ class _PengambilanScreenState extends State<PengambilanScreen> {
                       return alert;
                     },
                   );
+                  // List<UserModel> users =
+                  //     await ServiceManager.sharedInstance.getUserName("Selly");
+                  // print("total user selly: ${users.length}");
                 },
                 child: Text(
                   "Submit",
