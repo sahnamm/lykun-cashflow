@@ -1,1 +1,1 @@
-export '../screen/SubmitNewEntryScreen.dart';
+export '../screen/PengambilanScreen.dart';

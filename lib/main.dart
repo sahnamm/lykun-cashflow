@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
+import 'package:lykun_cashflow/screen/HistoryScreen.dart';
+import 'package:lykun_cashflow/screen/InProgressScreen.dart';
 import 'utils/ScreenList.dart';
-import 'package:flutter_typeahead/flutter_typeahead.dart';
 
 void main() {
   runApp(MyApp());
@@ -10,12 +10,22 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).requestFocus(new FocusNode());
+      },
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.green,
+          primaryColor: Colors.green.shade900,
+          textTheme: Theme.of(context).textTheme.apply(
+                fontFamily: 'Arial',
+                fontSizeDelta: 1.5,
+              ),
+        ),
+        home: MyHomePage(title: 'Flutter Demo Home Page'),
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
@@ -54,31 +64,36 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        // appBar: AppBar(
-        //   title: Text("LYKUN CASHFLOW"),
-        //   centerTitle: true,
-        // ),
-        body: Center(
-          child: Container(
-            child: Text("selected index is ${_selectedIndex.toString()}"),
+        appBar: AppBar(
+          title: Text(
+            _selectedIndex == 0
+                ? "PENGAMBILAN"
+                : _selectedIndex == 1
+                    ? "IN PROGRESS"
+                    : "HISTORY",
           ),
+          centerTitle: true,
         ),
-        // body: Center(
-        //   child: Container(
-        //     width: double.maxFinite,
-        //     child: TypeAheadField(
-        //       itemBuilder: (context, suggestion) {
-        //         return ListTile(
-        //           leading: Icon(Icons.shopping_cart),
-        //           title: Text(suggestion['name']),
-        //           subtitle: Text('\$${suggestion['price']}'),
-        //         );
-        //       },
-        //       onSuggestionSelected: (suggestion) {},
-        //       suggestionsCallback: (String pattern) {},
-        //     ),
-        //   ),
-        // ),
+        body: Padding(
+          padding: _selectedIndex == 1
+              ? const EdgeInsets.only(
+                  top: 5.0,
+                  left: 32.0,
+                  right: 32.0,
+                )
+              : _selectedIndex == 2
+                  ? const EdgeInsets.symmetric(vertical: 5.0)
+                  : const EdgeInsets.only(
+                      top: 32.0,
+                      left: 32.0,
+                      right: 32.0,
+                    ),
+          child: _selectedIndex == 0
+              ? PengambilanScreen()
+              : _selectedIndex == 1
+                  ? InProgressScreen()
+                  : HistoryScreen(),
+        ),
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           iconSize: 20,
