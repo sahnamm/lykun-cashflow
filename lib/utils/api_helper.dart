@@ -13,6 +13,7 @@ class APIHelper {
   Map<String, String> getHeader() {
     Map<String, String> header = new Map();
     header[HttpHeaders.authorizationHeader] = HEADER_AUTH;
+    header[HttpHeaders.contentTypeHeader] = "application/json";
 
     return header;
   }
