@@ -1,4 +1,5 @@
 import 'package:lykun_cashflow/common/constants.dart';
+import 'package:lykun_cashflow/model/history_model.dart';
 import 'package:lykun_cashflow/model/role_model.dart';
 import 'package:lykun_cashflow/model/user_model.dart';
 import 'package:lykun_cashflow/utils/api_helper.dart';
@@ -27,5 +28,25 @@ class ServiceManager {
       body: body,
     );
     return response.statusCode == 200;
+  }
+
+  Future<List<HistoryTransactionModel>> getTransactions({
+    int page,
+    String transactionStatus,
+  }) async {
+    String url =
+        "$HOST$SECTION/transaction?page=$page&limit=5&sort=asc&orderBy=id";
+    if (transactionStatus.isNotEmpty) {
+      url += "&status=$transactionStatus";
+    }
+    final response = await APIHelper.sharedInstance.doGet(url: url);
+    return HistoryTransactionModel.convertToList(response.body);
+  }
+
+  Future<List<HistoryTransactionModel>> getInProgressTransactions(
+      int page) async {
+    List<HistoryTransactionModel> response =
+        await getTransactions(page: page, transactionStatus: "in_progress");
+    return response;
   }
 }
