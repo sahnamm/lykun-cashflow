@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lykun_cashflow/screen/HistoryScreen.dart';
-import 'package:lykun_cashflow/screen/InProgressScreen.dart';
-import 'utils/ScreenList.dart';
+import 'utils/screen_list.dart';
 
 void main() {
   runApp(MyApp());

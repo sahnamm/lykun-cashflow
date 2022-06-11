@@ -1,10 +1,10 @@
 import 'dart:convert';
-import 'dart:ffi';
+import 'package:lykun_cashflow/model/role_model.dart';
 
 class UserModel {
   int id;
   String name;
-  String roleType;
+  RoleModel roleType;
 
   UserModel({
     this.id,
@@ -21,10 +21,16 @@ class UserModel {
   }
 
   factory UserModel.fromMap(Map<String, dynamic> map) {
+    int roleId = map['role_id'] ?? 0;
+    String roleName = map['role_name'] ?? '';
+
     return UserModel(
       id: map['id'] ?? '',
       name: map['name'] ?? '',
-      roleType: map['roleType'] ?? '',
+      roleType: RoleModel(
+        roleId: roleId,
+        roleName: roleName,
+      ),
     );
   }
 
@@ -34,7 +40,7 @@ class UserModel {
       UserModel.fromMap(json.decode(source));
 
   static List<UserModel> convertToList(jsonData) {
-    List<UserModel> result = List<UserModel>();
+    List<UserModel> result = [];
     List<dynamic> jsonMap = json.decode(jsonData);
     for (dynamic data in jsonMap) {
       UserModel mod = UserModel.fromMap(data);

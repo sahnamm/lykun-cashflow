@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class CustomTag extends StatefulWidget {
-  String tag;
+  final String tag;
   CustomTag({
     Key key,
     this.tag,

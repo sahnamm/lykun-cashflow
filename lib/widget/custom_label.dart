@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:lykun_cashflow/common/style.dart';
 
 class CustomLabel extends StatefulWidget {
-  String title;
-  double customSpaceSize;
-  Widget children;
+  final String title;
+  final double customSpaceSize;
+  final Widget children;
 
   CustomLabel({
     Key key,

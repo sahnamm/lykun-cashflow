@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:lykun_cashflow/widget/custom_tag.dart';
 
 class HistoryItem extends StatefulWidget {
-  int position;
-  String name;
-  String roleType;
-  String dateTaken;
-  String totalUnit;
-  String totalPrice;
+  final int position;
+  final String name;
+  final String roleType;
+  final String dateTaken;
+  final String totalUnit;
+  final String totalPrice;
 
   HistoryItem({
     Key key,

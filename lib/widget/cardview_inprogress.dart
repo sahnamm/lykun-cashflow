@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:lykun_cashflow/widget/custom_tag.dart';
 import 'package:lykun_cashflow/widget/custom_unit.dart';
 
 class CardViewInProgress extends StatefulWidget {
-  String roleType;
-  String takenDate;
-  String name;
-  String totalUnit;
+  final String roleType;
+  final String takenDate;
+  final String name;
+  final String totalUnit;
 
   CardViewInProgress({
     Key key,
@@ -28,7 +26,6 @@ class _CardViewInProgressState extends State<CardViewInProgress> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     kgcrt.text = "0";
     grcrt.text = "0";
