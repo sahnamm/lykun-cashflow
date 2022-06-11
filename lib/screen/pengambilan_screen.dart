@@ -32,7 +32,23 @@ class _PengambilanScreenState extends State<PengambilanScreen> {
   @override
   void initState() {
     super.initState();
+    initData();
+  }
+
+  initData() {
+    _selectedRole = null;
     getRoles();
+    disableRoleDropdown = false;
+
+    _typeAheadController.clear();
+    _pickedUserModel = null;
+    flagUser = false;
+
+    _unitKgController.clear();
+    _unitGrController.clear();
+    flagUnit = false;
+
+    setState(() {});
   }
 
   getRoles() async {
@@ -147,6 +163,7 @@ class _PengambilanScreenState extends State<PengambilanScreen> {
                         TextButton(
                           child: Text("OK"),
                           onPressed: () {
+                            initData();
                             Navigator.of(context).pop();
                           },
                         ),
