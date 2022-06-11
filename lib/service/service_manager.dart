@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:lykun_cashflow/common/constants.dart';
 import 'package:lykun_cashflow/model/history_model.dart';
 import 'package:lykun_cashflow/model/role_model.dart';
@@ -48,5 +50,27 @@ class ServiceManager {
     List<HistoryTransactionModel> response =
         await getTransactions(page: page, transactionStatus: "in_progress");
     return response;
+  }
+
+  Future<List<HistoryTransactionModel>> getCompleteTransactions(
+      int page) async {
+    List<HistoryTransactionModel> response =
+        await getTransactions(page: page, transactionStatus: "completed");
+    return response;
+  }
+
+  Future<bool> updateStatus(int transactionId, int remainingWeight) async {
+    String url = "$HOST$SECTION/transaction/complete";
+
+    Map<String, dynamic> bodyData = {
+      'id': transactionId,
+      'remaining_weight': remainingWeight,
+    };
+
+    final response = await APIHelper.sharedInstance.doPost(
+      url: url,
+      body: json.encode(bodyData),
+    );
+    return response.statusCode == 200;
   }
 }
